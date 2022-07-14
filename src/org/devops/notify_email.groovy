@@ -2,8 +2,7 @@ package org.devops
 
 // 定义邮件内容
 def EmailNotify(status,emailUser){
-    println(" ========> status:$status,email addr:$emailUser <======== ")
-    emailext body: """
+    mail body: """
             <!DOCTYPE html>
             <html>
             <head>
