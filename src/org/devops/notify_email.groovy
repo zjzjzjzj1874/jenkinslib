@@ -2,14 +2,14 @@ package org.devops
 
 // 定义邮件内容
 def EmailNotify(status,emailUser){
-    emailext body: """
+    println(" ========> status:$status,email addr:$emailUser <======== ")
+    emailtext body: """
             <!DOCTYPE html>
             <html>
             <head>
             <meta charset="UTF-8">
             </head>
             <body leftmargin="8" marginwidth="0" topmargin="8" marginheight="4" offset="0">
-                <img src="http://192.168.1.200:8080/static/0eef74bf/images/headshot.png">
                 <table width="95%" cellpadding="0" cellspacing="0" style="font-size: 11pt; font-family: Tahoma, Arial, Helvetica, sans-serif">
                     <tr>
                         <td><br />
@@ -32,6 +32,12 @@ def EmailNotify(status,emailUser){
             </body>
             </html>  """,
             subject: "Jenkins-${JOB_NAME}项目构建信息 ",
-            to: emailUser
+            to: "$emailUser"
+}
 
+// 定义邮件内容
+def Email(status){
+    mail to: "$BUILD_USER_EMAIL",
+        subject: "流水线${JOB_NAME}构建失败",
+        body: "${JOB_NAME}构建失败,请点击${BUILD_URL}查看并修复"
 }
