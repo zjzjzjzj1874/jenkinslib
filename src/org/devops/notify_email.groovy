@@ -38,5 +38,5 @@ def EmailNotify(status,emailUser){
 def Email(status){
     mail to: "$BUILD_USER_EMAIL",
         subject: "流水线${JOB_NAME}构建失败",
-        body: "${JOB_NAME}构建失败,请点击${BUILD_URL}查看并修复"
+        body: "项目名：${JOB_NAME}构建失败,项目地址:${BUILD_URL},请点击${BUILD_URL}console查看并修复"
 }
