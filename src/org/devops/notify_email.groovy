@@ -2,7 +2,7 @@ package org.devops
 
 // 定义邮件内容
 def EmailNotify(status,emailUser){
-    mail body: """
+    emailext body: """
             <!DOCTYPE html>
             <html>
             <head>
