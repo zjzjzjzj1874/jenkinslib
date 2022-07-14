@@ -19,12 +19,12 @@ def HttpReq(reqType,reqUrl,reqBody){
 
 // 封装HTTP Post请求
 def HttpPost(reqUrl){
+    def post = new URL(reqUrl).openConnection();
     def data = '{"msgtype": "text","text": {"content": "' + "${JOB_NAME}" + '构建完成，点击' + "${BUILD_URL}" + '查看详情"}}'
-    result = httpRequest httpMode: "POST",
-            contentType: "APPLICATION_JSON",
-            consoleLogResponseBody: true,
-            ignoreSslErrors: true,
-            requestBody: data,
-            url: "${reqUrl}"
-    return result
+
+    post.setRequestMethod("POST")
+    post.setDoOutput(true)
+    post.setRequestProperty("Content-Type", "application/json")
+    post.getOutputStream().write(data.getBytes("UTF-8"));
+    post.getResponseCode();
 }
