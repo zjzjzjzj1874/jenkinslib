@@ -1,8 +1,8 @@
 package org.devops
 
-// 定义邮件内容
-def EmailNotify(status,emailUser){
-    emailext body: """
+// 定义邮件内容 define more link at:https://www.jenkins.io/doc/pipeline/steps/email-ext/
+def EmailNotify(status){
+    mail body: """
             <!DOCTYPE html>
             <html>
             <head>
@@ -31,7 +31,8 @@ def EmailNotify(status,emailUser){
             </body>
             </html>  """,
             subject: "Jenkins-${JOB_NAME}项目构建信息 ",
-            to: "$emailUser"
+            mimeType: "text/html",
+            to: "$BUILD_USER_EMAIL"
 }
 
 // 定义邮件内容
